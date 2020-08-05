@@ -17,6 +17,20 @@ router.get('/', async (req, res) => {
     }
 })
 
+// @routes GET /api/v1/movies/:id
+// @desc GET a single Movie
+
+router.get('/:id', async (req, res) => {
+    try {
+        const movie = await movies.findById(req.params.id);
+        if (!movie) throw Error('No Movies found');
+
+        res.status(201).json(movie);
+    } catch (err) {
+        res.status(400).json({ msg: err });
+    }
+})
+
 // @routes POST /api/v1/movies
 // @desc Create new Movie
 
@@ -33,15 +47,29 @@ router.post('/', async (req, res) => {
     }
 });
 
-// @routes POST /api/v1/movies
-// @desc Create new Movie
+// @routes PUT /api/v1/movies/:id
+// @desc Update a Movie
+
+router.put('/:id', async (req,res)=> {
+    try {
+        const movie = await movies.findByIdAndUpdate(req.params.id, req.body);
+        if (!movie) throw Error('No Movies found');
+
+        res.status(201).json({ msg: "Movie Updated successfully" });
+    } catch (err) {
+        res.status(400).json({ msg: err });
+    }
+})
+
+// @routes DELETE /api/v1/movies/:id
+// @desc Delete a Movie
 
 router.delete('/:id', async (req, res) => {
     try {
         const movie = await movies.findByIdAndDelete(req.params.id);
         if (!movie) throw Error('No Movies found');
 
-        res.status(201).json(movie);
+        res.status(201).json({msg : "Movie Deleted from database"});
 
     } catch (err) {
         res.status(400).json({ msg: err })
