@@ -34,6 +34,8 @@ router.get('/:id', async (req, res) => {
 // @routes POST /api/v1/movies
 // @desc Create new Movie
 
+// define  constant called newMovies and extract request Body from 'movies' model, now save the newMovies into MongoDB using save()
+
 router.post('/', async (req, res) => {
     const newMovies = new movies(req.body);
     try {
