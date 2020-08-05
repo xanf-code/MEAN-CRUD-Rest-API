@@ -4,8 +4,13 @@
 
 CheckList:
 
-- [x] Static
+- [x] Scrape Data
+- [x] Static API
 - [x] MongoDB Backend
+
+## Link to Scrapper
+
+[IMDB Scrapper](https://github.com/xanf-code/IMDB-WebScraping)
 
 ## Run
 
