@@ -10,7 +10,7 @@ CheckList:
 ## Run
 
 ```
-# This project uses Denon
+# This project uses nodemon
 node run start app.js
 ```
 
