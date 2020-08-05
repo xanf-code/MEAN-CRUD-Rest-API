@@ -1,9 +1,14 @@
-const express = require('express')
-const mongoose = require('mongoose')
+const express = require('express');
+const mongoose = require('mongoose');
 
-const { MONGO_URI } = require('./config.js')
+const { MONGO_URI } = require('./config.js');
 
-const app = express()
+const movieRoutes = require('./routes/api/movies');
+
+const app = express();
+
+// to tackle undefined error
+app.use(express.json());
 
 mongoose.connect(MONGO_URI, {
     useNewUrlParser : true,
@@ -12,6 +17,8 @@ mongoose.connect(MONGO_URI, {
 .then(()=> {
     console.log('Database Connected!')
 }).catch(err => console.log(err))
+
+app.use('/api/v1/movies',movieRoutes);
 
 const port = process.env.PORT || 5000
 
